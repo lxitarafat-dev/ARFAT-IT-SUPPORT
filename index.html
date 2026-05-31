@@ -5,195 +5,371 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arafat IT Solution</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:#000;
+background:#050505;
 color:#fff;
 }
 
-.topbar{
-background:#020d3f;
-padding:10px 5%;
+header{
+background:#02114d;
+padding:12px 8%;
 display:flex;
 justify-content:space-between;
-font-size:14px;
+flex-wrap:wrap;
 }
 
-.navbar{
-background:#000;
-padding:20px 5%;
+nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:20px 8%;
+background:#000;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
 .logo{
-font-size:28px;
-font-weight:bold;
-color:#d60000;
+font-size:30px;
+font-weight:700;
+color:#ff0000;
 }
 
-.navbar ul{
+nav ul{
 display:flex;
 list-style:none;
 gap:25px;
 }
 
-.navbar a{
+nav ul li a{
 text-decoration:none;
 color:white;
-font-weight:bold;
+font-weight:500;
 }
 
 .hero{
-height:500px;
-background:linear-gradient(rgba(0,0,50,.8),rgba(0,0,50,.8)),
-url('https://images.unsplash.com/photo-1522199710521-72d69614c702');
-background-size:cover;
-background-position:center;
+height:100vh;
 display:flex;
 align-items:center;
 padding:0 8%;
+background:
+linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3');
+background-size:cover;
+background-position:center;
 }
 
-.hero-content h1{
-font-size:60px;
-margin-top:10px;
+.hero-content{
+max-width:700px;
 }
 
-.hero-content span{
-color:#ff2d2d;
-font-size:20px;
+.hero span{
+color:#ff0000;
+font-weight:600;
 }
 
-.section-title{
-background:#07052f;
-padding:25px;
-text-align:center;
-font-size:28px;
-font-weight:bold;
+.hero h1{
+font-size:65px;
+margin:20px 0;
+line-height:1.1;
 }
 
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-padding:50px 5%;
-}
-
-.card{
-background:#0a0a0a;
-border:1px solid #222;
-padding:30px;
-border-radius:10px;
-}
-
-.card h2{
-margin-bottom:20px;
-color:#fff;
-}
-
-.card ul{
-list-style:none;
-}
-
-.card li{
-margin-bottom:12px;
-color:#ddd;
+.hero p{
+color:#ccc;
+font-size:18px;
+line-height:1.8;
 }
 
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-background:#d60000;
+margin-top:25px;
+padding:15px 35px;
+background:#ff0000;
 color:#fff;
 text-decoration:none;
 border-radius:5px;
+font-weight:600;
 }
 
-.footer{
-background:#020d3f;
+.section-title{
 text-align:center;
-padding:20px;
-margin-top:50px;
+padding:70px 20px 40px;
+font-size:40px;
 }
-</style>
 
+.services{
+padding:0 8% 80px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.card{
+background:#111;
+padding:30px;
+border-radius:10px;
+border-left:5px solid red;
+}
+
+.card h3{
+color:red;
+margin-bottom:15px;
+}
+
+.about{
+padding:80px 8%;
+background:#0a0a0a;
+text-align:center;
+}
+
+.about p{
+max-width:900px;
+margin:auto;
+line-height:1.8;
+color:#ccc;
+}
+
+.pricing{
+padding:80px 8%;
+}
+
+.price-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.plan{
+background:#111;
+padding:35px;
+text-align:center;
+border-radius:10px;
+}
+
+.plan h3{
+color:red;
+}
+
+.plan h1{
+font-size:50px;
+margin:20px 0;
+}
+
+.contact{
+padding:80px 8%;
+text-align:center;
+background:#0a0a0a;
+}
+
+.contact p{
+margin:12px 0;
+}
+
+footer{
+background:#02114d;
+padding:20px;
+text-align:center;
+}
+
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+width:65px;
+height:65px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:white;
+text-decoration:none;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:40px;
+}
+
+nav ul{
+display:none;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="topbar">
-<div>📞 +971 XXXXXXXX</div>
-<div>📧 support@arafatit.com</div>
-</div>
+<header>
+<div>📞 +8801774851683</div>
+<div>💬 WhatsApp Support 24/7</div>
+</header>
 
-<nav class="navbar">
-<div class="logo">ARAFAT IT</div>
+<nav>
+
+<div class="logo">
+ARAFAT IT SOLUTION
+</div>
 
 <ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">Services</a></li>
-<li><a href="#">Pricing</a></li>
-<li><a href="#">Contact</a></li>
+<li><a href="#home">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
+
 </nav>
 
-<section class="hero">
+<section class="hero" id="home">
+
 <div class="hero-content">
-<span>SOLUTION</span>
-<h1>Full Solution & Support for ISP</h1>
+
+<span>ISP • VPN • MIKROTIK SOLUTION</span>
+
+<h1>
+Full Solution & Support
+For ISP Business
+</h1>
+
+<p>
+Professional MikroTik Configuration, Remote VPN,
+Voice VPN, OLT Configuration, Radius Server,
+Hotspot Billing System and 24/7 Technical Support.
+</p>
+
+<a href="https://wa.me/8801774851683" class="btn">
+Contact Now
+</a>
+
 </div>
+
 </section>
 
-<div class="section-title">
-Let's find deals and services available in our company
-</div>
+<h2 class="section-title" id="services">
+Our Services
+</h2>
 
 <section class="services">
 
 <div class="card">
-<h2>Remote VPN</h2>
-
-<ul>
-<li>✔ WinBox Ports</li>
-<li>✔ Web Ports</li>
-<li>✔ OLT Ports</li>
-<li>✔ API Ports</li>
-<li>✔ Customizable Ports</li>
-<li>✔ 24/7 Live Support</li>
-</ul>
-
-<a href="#" class="btn">Get Best Plans</a>
+<h3>MikroTik Configuration</h3>
+<p>Complete MikroTik Router Setup & Optimization.</p>
 </div>
 
 <div class="card">
-<h2>Voice VPN</h2>
+<h3>Remote VPN</h3>
+<p>Secure VPN Access With Full Support.</p>
+</div>
 
-<ul>
-<li>✔ IMO Call</li>
-<li>✔ WhatsApp Call</li>
-<li>✔ Messenger Call</li>
-<li>✔ Viber Call</li>
-<li>✔ 24/7 Support</li>
-<li>✔ UAE, Qatar, Saudi Support</li>
-</ul>
+<div class="card">
+<h3>Voice VPN</h3>
+<p>WhatsApp, IMO, Messenger & Viber Calls.</p>
+</div>
 
-<a href="#" class="btn">Get Best Plans</a>
+<div class="card">
+<h3>OLT Configuration</h3>
+<p>VSOL, BDCOM, Huawei, ZTE Support.</p>
+</div>
+
+<div class="card">
+<h3>Hotspot Billing</h3>
+<p>ISP Billing & User Management System.</p>
+</div>
+
+<div class="card">
+<h3>24/7 Support</h3>
+<p>Always Ready To Help Your Business.</p>
 </div>
 
 </section>
 
-<footer class="footer">
+<section class="about" id="about">
+
+<h2 class="section-title">
+About Us
+</h2>
+
+<p>
+Arafat IT Solution provides professional ISP, MikroTik,
+VPN, OLT and Network Support services. We help
+businesses and ISPs build secure and stable networks
+with modern technology and reliable support.
+</p>
+
+</section>
+
+<section class="pricing" id="pricing">
+
+<h2 class="section-title">
+Pricing Plans
+</h2>
+
+<div class="price-grid">
+
+<div class="plan">
+<h3>Basic</h3>
+<h1>$10</h1>
+<p>Remote VPN Setup</p>
+</div>
+
+<div class="plan">
+<h3>Standard</h3>
+<h1>$20</h1>
+<p>MikroTik + VPN</p>
+</div>
+
+<div class="plan">
+<h3>Premium</h3>
+<h1>$30</h1>
+<p>Full ISP Solution</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h2 class="section-title">
+Contact Us
+</h2>
+
+<p>📞 +8801774851683</p>
+
+<p>💬 WhatsApp: +8801774851683</p>
+
+<p>🛠 Arafat IT Solution</p>
+
+<p>🌍 Professional ISP & Network Support</p>
+
+</section>
+
+<footer>
+
 © 2026 Arafat IT Solution | All Rights Reserved
+
 </footer>
+
+<a href="https://wa.me/8801774851683" class="whatsapp">
+💬
+</a>
 
 </body>
 </html>
