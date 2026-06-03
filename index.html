@@ -1,161 +1,268 @@
-<!-- HERO -->
-<section class="hero">
-    <h1 class="glow">❤️ Athoy ❤️</h1>
-    <h2 id="typing"></h2>
-    <p>🌹 You Are My Favorite Person 🌹</p>
-    <div id="timer"></div>
-</section>
-
-<!-- LOVE LETTER -->
-<div class="card">
-    <h2>💌 A Special Message</h2>
-    <p>
-        তোমার হাসি সুন্দর, তোমার সুখ গুরুত্বপূর্ণ।
-        তোমার জীবনে সবসময় আনন্দ, শান্তি আর সফলতা আসুক।
-        🌹❤️
-    </p>
-</div>
-
-<!-- POEM -->
-<div class="card">
-    <h2>🌹 Poem</h2>
-    <p class="poem">
-        তুমি আমার স্বপ্নের আলো,<br>
-        তুমি আমার হৃদয়ের ভালো।<br><br>
-
-        চাঁদের আলো যেমন রাতে,<br>
-        সুখ থাকুক তোমার সাথে।<br><br>
-
-        হাসি থাকুক মুখে সারাক্ষণ,<br>
-        সুন্দর হোক তোমার প্রতিক্ষণ। ❤️
-    </p>
-</div>
-
-<!-- GALLERY -->
-<div class="card">
-    <h2>📸 Memories</h2>
-    <div class="gallery">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
-        <img src="photo4.jpg">
-    </div>
-</div>
-
-<!-- SPECIAL -->
-<div class="card">
-    <h2>💖 Why You Are Special</h2>
-    <p>🌹 তোমার হাসি সুন্দর</p>
-    <p>🌹 তোমার মন ভালো</p>
-    <p>🌹 তোমার সাথে কথা বলতে ভালো লাগে</p>
-    <p>🌹 তুমি জীবনের গুরুত্বপূর্ণ একজন মানুষ</p>
-</div>
-
-<!-- DREAMS -->
-<div class="card">
-    <h2>✨ Beautiful Wishes</h2>
-    <p>🌍 অনেক সুন্দর স্মৃতি তৈরি হোক</p>
-    <p>📸 জীবনের সুন্দর মুহূর্তগুলো উপভোগ করো</p>
-    <p>😊 সবসময় হাসিখুশি থাকো</p>
-</div>
-
-<!-- BUTTONS -->
-<div class="card">
-    <button onclick="showLove()">🎁 Open Surprise</button>
-    <button onclick="document.getElementById('music').play()">🎵 Play Music</button>
-
-    <audio id="music">
-        <source src="love.mp3" type="audio/mpeg">
-    </audio>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ Athoy ❤️</title>
 
 <style>
-.glow{
-    font-size:70px;
-    text-shadow:
-    0 0 10px #fff,
-    0 0 20px #ff4d6d,
-    0 0 40px #ff4d6d,
-    0 0 80px #ff4d6d;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#ff4d6d,#ff758f,#ff8fa3,#ffc2d1);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+color:white;
+overflow-x:hidden;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
 .hero{
-    text-align:center;
-    padding:80px 20px;
+text-align:center;
+padding:100px 20px;
 }
 
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
-    margin-top:20px;
+.hero h1{
+font-size:70px;
+text-shadow:0 0 10px #fff,0 0 20px #ff4d6d,0 0 40px #ff4d6d;
+animation:pulse 2s infinite;
 }
 
-.gallery img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-    border-radius:15px;
+@keyframes pulse{
+50%{transform:scale(1.05);}
 }
 
-.poem{
-    line-height:2;
-    font-size:18px;
-}
-
-.card{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(10px);
-    padding:25px;
-    margin:20px;
-    border-radius:20px;
-    text-align:center;
+.hero h2{
+margin-top:15px;
+font-size:30px;
 }
 
 #timer{
-    margin-top:15px;
-    font-size:22px;
-    font-weight:bold;
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+padding:25px;
+border-radius:20px;
+margin:20px 0;
+box-shadow:0 0 20px rgba(0,0,0,.2);
+text-align:center;
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+height:280px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.poem{
+font-size:18px;
+line-height:2;
+}
+
+button{
+padding:14px 30px;
+border:none;
+border-radius:30px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+margin:10px;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.heart{
+position:fixed;
+font-size:25px;
+pointer-events:none;
+animation:float 10s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+100%{
+transform:translateY(-100px);
+opacity:1;
+}
+}
+
+footer{
+text-align:center;
+padding:30px;
+font-size:18px;
 }
 </style>
+</head>
+
+<body>
+
+<section class="hero">
+<h1>❤️ Athoy ❤️</h1>
+<h2>You Are My Happiness 💖</h2>
+<div id="timer"></div>
+</section>
+
+<div class="container">
+
+<div class="card">
+<h2>💌 Special Message</h2>
+<p>
+তোমার হাসি সুন্দর,
+তোমার সুখ গুরুত্বপূর্ণ।
+তোমার জীবনে সবসময় আনন্দ,
+শান্তি আর সফলতা আসুক। ❤️🌹
+</p>
+</div>
+
+<div class="card">
+<h2>🌹 Beautiful Poem</h2>
+
+<div class="poem">
+তুমি আমার স্বপ্নের আলো,<br>
+তুমি আমার হৃদয়ের ভালো।<br><br>
+
+চাঁদের আলো যেমন রাতে,<br>
+সুখ থাকুক তোমার সাথে।<br><br>
+
+হাসি থাকুক মুখে সারাক্ষণ,<br>
+সুন্দর হোক তোমার প্রতিক্ষণ। ❤️
+</div>
+</div>
+
+<div class="card">
+<h2>📸 Memories Gallery</h2>
+
+<div class="gallery">
+<img src="https://picsum.photos/500/500?1">
+<img src="https://picsum.photos/500/500?2">
+<img src="https://picsum.photos/500/500?3">
+<img src="https://picsum.photos/500/500?4">
+</div>
+</div>
+
+<div class="card">
+<h2>💖 Why You Are Special</h2>
+
+<p>🌹 তোমার হাসি সুন্দর</p>
+<p>🌹 তোমার মন ভালো</p>
+<p>🌹 তোমার সাথে কথা বলতে ভালো লাগে</p>
+<p>🌹 তুমি অনেক স্পেশাল</p>
+</div>
+
+<div class="card">
+<h2>✨ Wishes For You</h2>
+
+<p>🌍 অনেক সুন্দর স্মৃতি তৈরি হোক</p>
+<p>📸 জীবনের প্রতিটি মুহূর্ত সুন্দর হোক</p>
+<p>😊 সবসময় হাসিখুশি থাকো</p>
+<p>❤️ সুখে থাকো, ভালো থাকো</p>
+</div>
+
+<div class="card">
+<h2>🎁 Surprise</h2>
+
+<button onclick="showLove()">
+Open Surprise ❤️
+</button>
+
+<button onclick="playMusic()">
+🎵 Play Music
+</button>
+
+<audio id="music">
+<source src="love.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+</div>
+
+<footer>
+❤️ Made With Love By Athoy ❤️
+</footer>
 
 <script>
-const text="You Are My Favorite Person 💖";
-let i=0;
-
-function type(){
-    if(i<text.length){
-        document.getElementById("typing").innerHTML+=text.charAt(i);
-        i++;
-        setTimeout(type,100);
-    }
-}
-type();
-
-let startDate=new Date("2025-01-01");
-
-setInterval(()=>{
-    let now=new Date();
-    let diff=now-startDate;
-
-    let days=Math.floor(diff/(1000*60*60*24));
-
-    document.getElementById("timer").innerHTML=
-    "❤️ Special Days: "+days+" ❤️";
-},1000);
 
 function showLove(){
-    alert("🌹 তুমি অনেক স্পেশাল 🌹\n\nতোমার জীবনে অনেক সুখ আসুক ❤️");
+alert(
+"❤️ Athoy ❤️\n\nতুমি অনেক স্পেশাল 🌹\nতোমার জীবনে অনেক সুখ আসুক 💖"
+);
 }
 
-for(let i=0;i<50;i++){
-    let h=document.createElement("div");
-    h.innerHTML=["❤️","💕","💖","🌹"][Math.floor(Math.random()*4)];
-    h.style.position="fixed";
-    h.style.left=Math.random()*100+"%";
-    h.style.top=Math.random()*100+"%";
-    h.style.fontSize=(20+Math.random()*25)+"px";
-    h.style.pointerEvents="none";
-    document.body.appendChild(h);
+function playMusic(){
+document.getElementById("music").play();
 }
+
+const textDate=new Date("2025-01-01");
+
+setInterval(()=>{
+let now=new Date();
+let diff=now-textDate;
+
+let days=Math.floor(diff/(1000*60*60*24));
+
+document.getElementById("timer").innerHTML=
+"❤️ Special Days Together: "+days+" ❤️";
+},1000);
+
+for(let i=0;i<70;i++){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML=["❤️","💕","💖","🌹","✨"][Math.floor(Math.random()*5)];
+
+h.style.left=Math.random()*100+"%";
+
+h.style.animationDuration=
+(5+Math.random()*10)+"s";
+
+h.style.fontSize=
+(20+Math.random()*30)+"px";
+
+document.body.appendChild(h);
+
+}
+
 </script>
+
+</body>
+</html>
