@@ -1,375 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arafat IT Solution</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>❤️ Athoy ❤️</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
-background:#050505;
-color:#fff;
-}
-
-header{
-background:#02114d;
-padding:12px 8%;
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-}
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:#000;
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-.logo{
-font-size:30px;
-font-weight:700;
-color:#ff0000;
-}
-
-nav ul{
-display:flex;
-list-style:none;
-gap:25px;
-}
-
-nav ul li a{
-text-decoration:none;
+background:linear-gradient(-45deg,#ff4d6d,#ff758f,#ff8fa3,#ffc2d1);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
 color:white;
-font-weight:500;
+overflow-x:hidden;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:30px;
+text-align:center;
 }
 
 .hero{
-height:100vh;
-display:flex;
-align-items:center;
-padding:0 8%;
-background:
-linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),
-url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3');
-background-size:cover;
-background-position:center;
-}
-
-.hero-content{
-max-width:700px;
-}
-
-.hero span{
-color:#ff0000;
-font-weight:600;
+padding:80px 20px;
 }
 
 .hero h1{
-font-size:65px;
-margin:20px 0;
-line-height:1.1;
+font-size:60px;
+text-shadow:0 0 20px white;
 }
 
-.hero p{
-color:#ccc;
-font-size:18px;
-line-height:1.8;
-}
-
-.btn{
-display:inline-block;
-margin-top:25px;
-padding:15px 35px;
-background:#ff0000;
-color:#fff;
-text-decoration:none;
-border-radius:5px;
-font-weight:600;
-}
-
-.section-title{
-text-align:center;
-padding:70px 20px 40px;
-font-size:40px;
-}
-
-.services{
-padding:0 8% 80px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+.hero h2{
+margin-top:10px;
+font-size:30px;
 }
 
 .card{
-background:#111;
-padding:30px;
-border-radius:10px;
-border-left:5px solid red;
-}
-
-.card h3{
-color:red;
-margin-bottom:15px;
-}
-
-.about{
-padding:80px 8%;
-background:#0a0a0a;
-text-align:center;
-}
-
-.about p{
-max-width:900px;
-margin:auto;
-line-height:1.8;
-color:#ccc;
-}
-
-.pricing{
-padding:80px 8%;
-}
-
-.price-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-
-.plan{
-background:#111;
-padding:35px;
-text-align:center;
-border-radius:10px;
-}
-
-.plan h3{
-color:red;
-}
-
-.plan h1{
-font-size:50px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:20px;
 margin:20px 0;
+box-shadow:0 0 20px rgba(0,0,0,.2);
 }
 
-.contact{
-padding:80px 8%;
-text-align:center;
-background:#0a0a0a;
+.poem{
+line-height:2;
+font-size:18px;
 }
 
-.contact p{
-margin:12px 0;
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+margin-top:20px;
 }
 
-footer{
-background:#02114d;
-padding:20px;
-text-align:center;
+.gallery img{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:15px;
 }
 
-.whatsapp{
+button{
+padding:14px 30px;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+margin-top:15px;
+font-weight:bold;
+}
+
+#timer{
+font-size:22px;
+font-weight:bold;
+margin-top:15px;
+}
+
+.heart{
 position:fixed;
-bottom:25px;
-right:25px;
-width:65px;
-height:65px;
-background:#25D366;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:30px;
-color:white;
-text-decoration:none;
+font-size:25px;
+animation:float 8s linear infinite;
+opacity:.8;
 }
 
-@media(max-width:768px){
-
-.hero h1{
-font-size:40px;
+@keyframes float{
+from{
+transform:translateY(100vh);
 }
-
-nav ul{
-display:none;
+to{
+transform:translateY(-100px);
 }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<header>
-<div>📞 +8801774851683</div>
-<div>💬 WhatsApp Support 24/7</div>
-</header>
+<div class="container">
 
-<nav>
-
-<div class="logo">
-ARAFAT IT SOLUTION
+<div class="hero">
+<h1>❤️ Athoy ❤️</h1>
+<h2>You Are Special 💖</h2>
+<div id="timer"></div>
 </div>
 
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#pricing">Pricing</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-
-</nav>
-
-<section class="hero" id="home">
-
-<div class="hero-content">
-
-<span>ISP • VPN • MIKROTIK SOLUTION</span>
-
-<h1>
-Full Solution & Support
-For ISP Business
-</h1>
-
+<div class="card">
+<h2>💌 A Message For You</h2>
+<br>
 <p>
-Professional MikroTik Configuration, Remote VPN,
-Voice VPN, OLT Configuration, Radius Server,
-Hotspot Billing System and 24/7 Technical Support.
+তোমার হাসি সুন্দর,
+তোমার সুখ গুরুত্বপূর্ণ,
+আর তোমার জীবনে সবসময় আনন্দ থাকুক।
+🌹❤️
 </p>
-
-<a href="https://wa.me/8801774851683" class="btn">
-Contact Now
-</a>
-
-</div>
-
-</section>
-
-<h2 class="section-title" id="services">
-Our Services
-</h2>
-
-<section class="services">
-
-<div class="card">
-<h3>MikroTik Configuration</h3>
-<p>Complete MikroTik Router Setup & Optimization.</p>
 </div>
 
 <div class="card">
-<h3>Remote VPN</h3>
-<p>Secure VPN Access With Full Support.</p>
+<h2>🌹 Poem</h2>
+<br>
+<div class="poem">
+তুমি আমার স্বপ্নের আলো,<br>
+তুমি আমার হৃদয়ের ভালো।<br><br>
+
+চাঁদের আলো যেমন রাতে,<br>
+সুখ থাকুক তোমার সাথে।<br><br>
+
+হাসি থাকুক মুখে সারাক্ষণ,<br>
+সুন্দর হোক তোমার প্রতিক্ষণ। ❤️
+</div>
 </div>
 
 <div class="card">
-<h3>Voice VPN</h3>
-<p>WhatsApp, IMO, Messenger & Viber Calls.</p>
+<h2>📸 Memories</h2>
+
+<div class="gallery">
+<img src="https://picsum.photos/400/400?1">
+<img src="https://picsum.photos/400/400?2">
+<img src="https://picsum.photos/400/400?3">
+</div>
 </div>
 
 <div class="card">
-<h3>OLT Configuration</h3>
-<p>VSOL, BDCOM, Huawei, ZTE Support.</p>
+<h2>🌟 Why You Are Special</h2>
+<br>
+<p>🌹 তোমার হাসি সুন্দর</p>
+<p>🌹 তোমার মন ভালো</p>
+<p>🌹 তোমার সাথে কথা বলতে ভালো লাগে</p>
+<p>🌹 তুমি জীবনের গুরুত্বপূর্ণ একজন মানুষ</p>
 </div>
 
 <div class="card">
-<h3>Hotspot Billing</h3>
-<p>ISP Billing & User Management System.</p>
-</div>
+<h2>🎁 Surprise</h2>
 
-<div class="card">
-<h3>24/7 Support</h3>
-<p>Always Ready To Help Your Business.</p>
-</div>
+<button onclick="showLove()">
+Open Surprise ❤️
+</button>
 
-</section>
+<br><br>
 
-<section class="about" id="about">
+<button onclick="document.getElementById('music').play()">
+🎵 Play Music
+</button>
 
-<h2 class="section-title">
-About Us
-</h2>
+<audio id="music">
+<source src="love.mp3" type="audio/mpeg">
+</audio>
 
-<p>
-Arafat IT Solution provides professional ISP, MikroTik,
-VPN, OLT and Network Support services. We help
-businesses and ISPs build secure and stable networks
-with modern technology and reliable support.
-</p>
-
-</section>
-
-<section class="pricing" id="pricing">
-
-<h2 class="section-title">
-Pricing Plans
-</h2>
-
-<div class="price-grid">
-
-<div class="plan">
-<h3>Basic</h3>
-<h1>$10</h1>
-<p>Remote VPN Setup</p>
-</div>
-
-<div class="plan">
-<h3>Standard</h3>
-<h1>$20</h1>
-<p>MikroTik + VPN</p>
-</div>
-
-<div class="plan">
-<h3>Premium</h3>
-<h1>$30</h1>
-<p>Full ISP Solution</p>
 </div>
 
 </div>
 
-</section>
+<script>
 
-<section class="contact" id="contact">
+let startDate=new Date("2025-01-01");
 
-<h2 class="section-title">
-Contact Us
-</h2>
+setInterval(()=>{
+let now=new Date();
+let diff=now-startDate;
 
-<p>📞 +8801774851683</p>
+let days=Math.floor(diff/(1000*60*60*24));
 
-<p>💬 WhatsApp: +8801774851683</p>
+document.getElementById("timer").innerHTML=
+"❤️ Special Days: "+days+" ❤️";
+},1000);
 
-<p>🛠 Arafat IT Solution</p>
+function showLove(){
+alert("🌹 তুমি অনেক স্পেশাল 🌹\n\nতোমার জীবনে অনেক সুখ আসুক ❤️");
+}
 
-<p>🌍 Professional ISP & Network Support</p>
-
-</section>
-
-<footer>
-
-© 2026 Arafat IT Solution | All Rights Reserved
-
-</footer>
-
-<a href="https://wa.me/8801774851683" class="whatsapp">
-💬
-</a>
+for(let i=0;i<40;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML=["❤️","💕","💖","🌹"][Math.floor(Math.random()*4)];
+h.style.left=Math.random()*100+"%";
+h.style.animationDuration=(5+Math.random()*8)+"s";
+h.style.fontSize=(20+Math.random()*25)+"px";
+document.body.appendChild(h);
+}
+</script>
 
 </body>
 </html>
