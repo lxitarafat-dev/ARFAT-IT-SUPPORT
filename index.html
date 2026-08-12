@@ -3,274 +3,736 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXPO Wi-Fi Hotspot - মাসিক হিসাব খাতা</title>
+    <title>ভাই ভাই ওয়াইফাই ডিজিটাল নেটওয়ার্ক - হুমাইপুর</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: #f0f2f5; margin: 0; padding: 20px; }
-        .container { max-width: 1100px; margin: auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #1a73e8; margin-bottom: 10px; }
-        
-        .month-selector { text-align: center; margin-bottom: 20px; font-size: 18px; font-weight: bold; }
-        .month-selector select { font-size: 16px; padding: 6px 12px; border-radius: 5px; border: 1px solid #1a73e8; font-weight: bold; color: #1a73e8; }
-
-        .btn-group { text-align: center; margin-bottom: 20px; }
-        .btn { padding: 10px 18px; font-size: 15px; border: none; border-radius: 5px; cursor: pointer; margin: 0 4px; font-weight: bold; }
-        .btn-save { background-color: #2e7d32; color: white; }
-        .btn-pdf { background-color: #1a73e8; color: white; }
-        .btn-clear { background-color: #d32f2f; color: white; }
-
-        .summary-box { display: flex; gap: 15px; justify-content: space-between; margin-bottom: 30px; flex-wrap: wrap; }
-        .card { flex: 1; min-width: 200px; padding: 15px; border-radius: 8px; color: white; text-align: center; }
-        .card-biz { background-color: #1a73e8; }
-        .card-personal { background-color: #2e7d32; }
-        .card h3 { margin: 0 0 10px 0; font-size: 16px; }
-        .card p { margin: 0; font-size: 22px; font-weight: bold; }
-        
-        h2 { border-bottom: 2px solid; padding-bottom: 8px; margin-top: 30px; }
-        .biz-title { color: #1a73e8; border-color: #1a73e8; }
-        .per-title { color: #2e7d32; border-color: #2e7d32; }
-        
-        .table-responsive { overflow-x: auto; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; min-width: 750px; }
-        th, td { border: 1px solid #e0e0e0; padding: 8px 10px; text-align: center; }
-        th { background-color: #f5f5f5; font-size: 14px; }
-        .biz-th { background-color: #e8f0fe; color: #1a73e8; }
-        .per-th { background-color: #e8f5e9; color: #2e7d32; }
-        
-        input[type="number"], input[type="text"] {
-            width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px; text-align: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
         }
-        .total-row { font-weight: bold; background-color: #f0f0f0; }
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        /* Moving Ticker Bar */
+        .marquee-container {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b, #f7b733);
+            color: white;
+            padding: 12px 0;
+            font-size: 1.15rem;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+        }
+        .marquee-container marquee {
+            width: 100%;
+        }
 
-        /* 📄 PDF / Print Styling */
-        @media print {
-            body { background-color: white; padding: 0; }
-            .container { box-shadow: none; padding: 0; max-width: 100%; }
-            .btn-group, select { display: none !important; }
-            input { border: none !important; background: transparent !important; }
-            input::placeholder { color: transparent; }
-            .card-biz, .card-personal { background-color: #f0f0f0 !important; color: #000 !important; border: 1px solid #000; }
-            .biz-title, .per-title { color: #000 !important; border-color: #000 !important; }
-            th { background-color: #f0f0f0 !important; color: #000 !important; }
+        /* Internet Themed Colorful Header with Background Overlay */
+        header {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 58, 138, 0.9)), 
+                        url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 90px 20px;
+            position: relative;
+            border-bottom: 6px solid #00f2fe;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+        }
+        header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+            color: #00f2fe;
+        }
+        header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .owner-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+            border: 2px solid #fff;
+        }
+        .developer-tag {
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.15rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
+            transition: 0.3s;
+        }
+        .cta-btn.complaint {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
+        }
+        .cta-btn.facebook {
+            background: linear-gradient(135deg, #2b5876, #4e4376);
+        }
+        .cta-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-4px);
+        }
+        
+        .container {
+            max-width: 1150px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #00c6ff, #ff416c);
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Personal Note Section */
+        .personal-note-card {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border: 3px solid #00c6ff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .personal-note-card h2 {
+            color: #1e3a8a;
+            font-size: 2.1rem;
+            margin-bottom: 15px;
+        }
+        .personal-note-card p {
+            font-size: 1.25rem;
+            color: #475569;
+            line-height: 1.8;
+            font-style: italic;
+            max-width: 950px;
+            margin: 0 auto 20px auto;
+        }
+        .personal-note-card .signature {
+            font-weight: bold;
+            color: #ff416c;
+            font-size: 1.4rem;
+        }
+
+        /* Auto Slide Poster Section */
+        .slider-container {
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto 50px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            background: #000;
+            border: 4px solid #fff;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            animation: fade 1.5s ease-in-out;
+        }
+        .slide.active {
+            display: block;
+        }
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.85);
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            padding: 18px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-top: 2px solid #00c6ff;
+        }
+
+        /* Probashi Special Banner */
+        .probashi-banner {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 45px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
+            border-left: 10px solid #f7b733;
+        }
+        .probashi-banner h2 {
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            color: #f7b733;
+        }
+        .probashi-banner p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .feature-box {
+            background: white;
+            padding: 40px 25px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-top: 6px solid #00c6ff;
+            transition: 0.3s;
+        }
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 198, 255, 0.2);
+        }
+        .feature-box h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .feature-box p {
+            color: #64748b;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .price-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
+        .price-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .price-header {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .price-body {
+            padding: 40px 25px;
+        }
+        .speed {
+            font-size: 2.8rem;
+            color: #00c6ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 2.2rem;
+            color: #ff416c;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        .price-body ul {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+            padding-left: 20px;
+        }
+        .price-body ul li {
+            margin: 14px 0;
+            color: #334155;
+            font-size: 1.1rem;
+        }
+        .order-btn {
+            background: #0f172a;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+        .order-btn:hover {
+            background: #00c6ff;
+            color: #0f172a;
+        }
+
+        /* Forms Section */
+        .forms-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+        .form-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+        }
+        .booking-box {
+            border-top: 8px solid #25D366;
+        }
+        .complaint-box {
+            border-top: 8px solid #ff416c;
+        }
+        .custom-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #1e3a8a;
+            font-size: 1.05rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 14px;
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            outline: none;
+            transition: 0.3s;
+            background: #f8fafc;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #00c6ff;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 198, 255, 0.25);
+        }
+        .submit-btn {
+            background: #25D366;
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        .submit-btn.complaint-btn {
+            background: #ff416c;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+        }
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.3);
+            border-bottom: 6px solid #00c6ff;
+        }
+        .contact-box h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #00f2fe;
+        }
+        .contact-box p {
+            font-size: 1.3rem;
+            margin: 12px 0;
+            color: #e2e8f0;
+        }
+        .phone-link {
+            color: #0f172a;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            padding: 15px 35px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.6rem;
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+            transition: 0.3s;
+        }
+        .phone-link:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            padding: 35px;
+            background: #090d16;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            border-top: 1px solid #1e293b;
+        }
+        footer span {
+            color: #00f2fe;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>📡 EXPO Wi-Fi Hotspot & Personal Statement</h1>
-
-    <!-- মাস নির্বাচন -->
-    <div class="month-selector">
-        মাস নির্বাচন করুন: 
-        <select id="selected-month" onchange="loadSavedData()">
-            <option value="January">জানুয়ারি (January)</option>
-            <option value="February">ফেব্রুয়ারি (February)</option>
-            <option value="March">মার্চ (March)</option>
-            <option value="April">এপ্রিল (April)</option>
-            <option value="May">মে (May)</option>
-            <option value="June">জুন (June)</option>
-            <option value="July">জুলাই (July)</option>
-            <option value="August" selected>আগস্ট (August)</option>
-            <option value="September">সেপ্টেম্বর (September)</option>
-            <option value="October">অক্টোবর (October)</option>
-            <option value="November">নভেম্বর (November)</option>
-            <option value="December">ডিসেম্বর (December)</option>
-        </select>
+    <!-- Running Moving Ticker Bar -->
+    <div class="marquee-container">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+            🌐 ⚡ "ভাই ভাই ওয়াইফাই ডিজিটাল নেটওয়ার্ক" — হুমাইপুর | 🚀 "সাফল্য একদিনে আসে না, নিয়মিত চেষ্টা আর সততার মাধ্যমে বড় হতে হয়।" — তাজিম খান | 💡 কারেন্ট থাকুক বা না থাকুক, আমাদের হাই-স্পিড ফাইবার ইন্টারনেট সেবা থাকবে ২৪ ঘণ্টা সম্পূর্ণ সচল! | 📞 নতুন সংযোগ ও জরুরি সেবায় সরাসরি কল করুন: তাজিম খান (+8801953421738)
+        </marquee>
     </div>
 
-    <!-- বাটন গ্রুপ -->
-    <div class="btn-group">
-        <button class="btn btn-save" onclick="saveData()">💾 ডাটা সেভ করুন (Save)</button>
-        <button class="btn btn-pdf" onclick="downloadPDF()">📥 ডাউনলোড PDF (Save PDF)</button>
-        <button class="btn btn-clear" onclick="clearData()">🗑️ এই মাসের তথ্য রিসেট</button>
-    </div>
-
-    <!-- সামারি কার্ড -->
-    <div class="summary-box">
-        <div class="card card-biz">
-            <h3>EXPO Hotspot নিট লাভ</h3>
-            <p id="biz-profit-display">৳ ০</p>
+    <!-- Internet Themed Header -->
+    <header>
+        <div class="owner-badge">প্রোপ্রাইটর: তাজিম খান</div>
+        <h1>ভাই ভাই ওয়াইফাই ডিজিটাল নেটওয়ার্ক</h1>
+        <p>হুমাইপুর এলাকায় সুপার-ফাস্ট ফাইবার অপটিক ব্রডব্যান্ড ইন্টারনেট এবং ২৪/৭ নিরবচ্ছিন্ন ব্যাকআপ সেবা।</p>
+        <div class="developer-tag">Designed & Developed by: Engr. Neyamul Haque</div>
+        <div class="cta-buttons">
+            <a href="#booking" class="cta-btn">📞 নতুন সংযোগ বুকিং</a>
+            <a href="#complaint" class="cta-btn complaint">⚠️ লাইন সমস্যা অভিযোগ</a>
+            <a href="https://www.facebook.com/share/1EWuZEovF8/" target="_blank" class="cta-btn facebook">🔵 আমাদের ফেসবুক পেজ</a>
         </div>
-        <div class="card card-personal">
-            <h3>ব্যক্তিগত মোট জমানো টাকা</h3>
-            <p id="per-balance-display">৳ ০</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Personal Note Section -->
+        <div class="personal-note-card">
+            <h2>চেয়ারম্যান ও প্রোপ্রাইটরের বাণী</h2>
+            <p>"ব্যবসা শুধু মুনাফা অর্জনের জন্য নয়, মানুষের আস্থার জায়গা তৈরি করাটাই আসল লক্ষ্য। হুমাইপুর এলাকার প্রতিটি ঘরে নিরবচ্ছিন্ন হাই-স্পিড ইন্টারনেট সেবা পৌঁছে দিতে আমরা বদ্ধপরিকর। আপনাদের যেকোনো সমস্যায় আমি এবং আমাদের টিম সবসময় আপনাদের পাশে আছি।"</p>
+            <div class="signature">— তাজিম খান<br><span style="font-size: 1.1rem; color: #64748b; font-style: normal;">প্রতিষ্ঠাতা ও পরিচালক, ভাই ভাই ওয়াইফাই ডিজিটাল নেটওয়ার্ক</span></div>
         </div>
-    </div>
 
-    <!-- ১. EXPO হটস্পট ব্যবসার টেবিল -->
-    <h2 class="biz-title">📶 EXPO Hotspot Business (৩১ দিন)</h2>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr class="biz-th">
-                    <th style="width: 8%;">তারিখ</th>
-                    <th>ভাউচার/প্যাকেজ বিক্রি (বিবরণ)</th>
-                    <th style="width: 12%;">মোট আয় (৳)</th>
-                    <th>খরচের বিবরণ (ISP/বিদ্যুৎ/অন্যান্য)</th>
-                    <th style="width: 12%;">মোট খরচ (৳)</th>
-                    <th style="width: 12%;">দৈনিক লাভ (৳)</th>
-                </tr>
-            </thead>
-            <tbody id="biz-tbody"></tbody>
-            <tfoot>
-                <tr class="total-row">
-                    <td colspan="2">মাসিক মোট (Total)</td>
-                    <td id="biz-total-inc">৳ ০</td>
-                    <td>-</td>
-                    <td id="biz-total-exp">৳ ০</td>
-                    <td id="biz-net-total">৳ ০</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+        <!-- Auto Slide Internet Themed Posters -->
+        <h2 class="section-title">আমাদের সেবামূলক হাইলাইটস</h2>
+        <div class="slider-container">
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=850&q=80" alt="Fiber Internet Network">
+                <div class="slide-caption">⚡ কারেন্ট না থাকলেও ব্যাকআপ সার্ভারের মাধ্যমে ইন্টারনেট লাইন থাকবে ২৪ ঘণ্টা সচল!</div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=850&q=80" alt="High Speed Connectivity">
+                <div class="slide-caption">💡 প্রবাসীদের আস্থার প্রতীক — প্রবাসে বসে পরিবারের সাথে কথা বলুন ক্লিয়ার ভিডিও কলে!</div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=850&q=80" alt="Tech Support">
+                <div class="slide-caption">🛠️ দ্রুততম সময়ে হোম সার্ভিস ও লাইন ঠিক করার জন্য প্রস্তুত টেকনিক্যাল টিম</div>
+            </div>
+        </div>
 
-    <!-- ২. ব্যক্তিগত হিসাবের টেবিল -->
-    <h2 class="per-title">👤 ব্যক্তিগত আয়-ব্যয়ের হিসাব (৩১ দিন)</h2>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr class="per-th">
-                    <th style="width: 8%;">তারিখ</th>
-                    <th>নিজস্ব আয়ের বিবরণ</th>
-                    <th style="width: 12%;">নিজস্ব আয় (৳)</th>
-                    <th>ব্যক্তিগত খরচের বিবরণ</th>
-                    <th style="width: 12%;">নিজস্ব খরচ (৳)</th>
-                    <th style="width: 12%;">দৈনিক অবশিষ্ট (৳)</th>
-                </tr>
-            </thead>
-            <tbody id="per-tbody"></tbody>
-            <tfoot>
-                <tr class="total-row">
-                    <td colspan="2">মাসিক মোট (Total)</td>
-                    <td id="per-total-inc">৳ ০</td>
-                    <td>-</td>
-                    <td id="per-total-exp">৳ ০</td>
-                    <td id="per-net-total">৳ ০</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-</div>
+        <!-- Probashi Special Corner -->
+        <div class="probashi-banner">
+            <h2>✈️ প্রবাসী ভাইদের জন্য বিশেষ বার্তা</h2>
+            <p>বিদেশে মাথার ঘাম পায়ে ফেলে আপনারা যে কষ্ট করছেন, দেশের মাটিতে আপনার পরিবার যেন কোনো কষ্টে না থাকে—সে দায়িত্ব আমাদের। কারেন্ট চলে গেলেও বাড়ির ছোটদের অনলাইন পড়াশোনা বা আপনার সাথে ভিডিও কল যেন এক সেকেন্ডের জন্যও ব্যাহত না হয়, সেজন্য আমাদের রয়েছে স্পেশাল পাওয়ার ব্যাকআপ সিস্টেম।</p>
+            <a href="#booking" class="cta-btn" style="background: #f7b733; color: #0f172a;">পরিবারের জন্য আজই বুক করুন</a>
+        </div>
 
-<script>
-    function generateRows() {
-        const bizTbody = document.getElementById('biz-tbody');
-        const perTbody = document.getElementById('per-tbody');
-        bizTbody.innerHTML = '';
-        perTbody.innerHTML = '';
+        <!-- Features Section -->
+        <h2 class="section-title">কেন আমাদের ইন্টারনেট সেবা বেছে নেবেন?</h2>
+        <div class="features">
+            <div class="feature-box">
+                <h3>⚡ নো কারেন্ট নো টেনশন</h3>
+                <p>বিদ্যুৎ চলে গেলেও আমাদের শক্তিশালী ব্যাকআপ সার্ভারের মাধ্যমে ইন্টারনেট লাইন সর্বদা সচল রাখা হয়।</p>
+            </div>
+            <div class="feature-box">
+                <h3>🚀 সুপার ফাস্ট ফাইবার স্পিড</h3>
+                <p>কোনো ল্যাগ বা বাফারিং ছাড়াই ইউটিউব, ফেসবুক, অনলাইন ক্লাস ও হেভি গেমিং উপভোগ করুন।</p>
+            </div>
+            <div class="feature-box">
+                <h3>💰 সাশ্রয়ী মাসিক খরচ</h3>
+                <p>খুব কম খরচে আনলিমিটেড ব্রাউজিং এবং ফ্যামিলি ফ্রেন্ডলি ব্রডব্যান্ড প্যাকেজ সুবিধা।</p>
+            </div>
+        </div>
 
-        for (let i = 1; i <= 31; i++) {
-            let day = i < 10 ? '0' + i : i;
+        <!-- Pricing Section -->
+        <h2 class="section-title">আমাদের ইন্টারনেট প্যাকেজসমূহ</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <div class="price-header">বেসিক প্যাকেজ</div>
+                <div class="price-body">
+                    <div class="speed">২০ Mbps</div>
+                    <div class="price">৫০০ টাকা <span style="font-size: 1rem; color: #64748b;">/মাস</span></div>
+                    <ul>
+                        <li>✅ কারেন্ট না থাকলেও লাইন চালু</li>
+                        <li>✅ আনলিমিটেড ব্রাউজিং</li>
+                        <li>✅ এইচডি ভিডিও স্ট্রিমিং</li>
+                        <li>✅ ২৪/৭ হেল্পলাইন সাপোর্ট</li>
+                    </ul>
+                    <a href="#booking" class="order-btn">বুক করুন</a>
+                </div>
+            </div>
+
+            <div class="price-card" style="border: 2px solid #00c6ff;">
+                <div class="price-header" style="background: #00c6ff; color: #0f172a;">পপুলার প্যাকেজ</div>
+                <div class="price-body">
+                    <div class="speed">৩০ Mbps</div>
+                    <div class="price">৬০০ টাকা <span style="font-size: 1rem; color: #64748b;">/মাস</span></div>
+                    <ul>
+                        <li>✅ কারেন্ট না থাকলেও লাইন চালু</li>
+                        <li>✅ আনলিমিটেড হাই-স্পিড</li>
+                        <li>✅ ৪কে ভিডিও স্ট্রিমিং</li>
+                        <li>✅ ২৪/৭ ফাস্ট সার্ভিস সাপোর্ট</li>
+                    </ul>
+                    <a href="#booking" class="order-btn" style="background: #00c6ff; color: #0f172a;">বুক করুন</a>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-header">প্রো প্যাকেজ</div>
+                <div class="price-body">
+                    <div class="speed">৮০ Mbps</div>
+                    <div class="price">৮০০ টাকা <span style="font-size: 1rem; color: #64748b;">/মাস</span></div>
+                    <ul>
+                        <li>✅ কারেন্ট না থাকলেও লাইন চালু</li>
+                        <li>✅ আল্ট্রা-ফাস্ট আনলিমিটেড</li>
+                        <li>✅ গেমিং ও হেভি ডাউনলোডিং</li>
+                        <li>✅ প্রিমিয়াম ২৪/৭ হোম সার্ভিস</li>
+                    </ul>
+                    <a href="#booking" class="order-btn">বুক করুন</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forms Container (Booking & Complaint) -->
+        <div class="forms-container">
             
-            bizTbody.innerHTML += `
-                <tr>
-                    <td>Day ${day}</td>
-                    <td><input type="text" id="biz_desc_${i}" placeholder="বিবরণ"></td>
-                    <td><input type="number" id="biz_inc_${i}" class="biz-inc" oninput="calculateBiz()" placeholder="0"></td>
-                    <td><input type="text" id="biz_expdesc_${i}" placeholder="খরচের খাত"></td>
-                    <td><input type="number" id="biz_exp_${i}" class="biz-exp" oninput="calculateBiz()" placeholder="0"></td>
-                    <td class="biz-day-bal">৳ 0</td>
-                </tr>
-            `;
+            <!-- Booking Form -->
+            <div class="form-box booking-box" id="booking">
+                <h2 style="color: #25D366; margin-bottom: 15px; font-size: 1.7rem;">📞 নতুন সংযোগ বুকিং ফর্ম</h2>
+                <p style="color: #64748b; margin-bottom: 20px; font-size: 1rem;">নতুন সংযোগ নিতে তথ্য দিয়ে ফর্মটি পূরণ করুন।</p>
+                
+                <form class="custom-form" id="whatsappBookingForm">
+                    <div class="form-group">
+                        <label for="bName">গ্রাহকের নাম:</label>
+                        <input type="text" id="bName" placeholder="সম্পূর্ণ নাম লিখুন" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bFatherName">পিতার নাম:</label>
+                        <input type="text" id="bFatherName" placeholder="পিতার নাম লিখুন" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bPhone">মোবাইল নম্বর:</label>
+                        <input type="tel" id="bPhone" placeholder="মোবাইল নম্বর দিন" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bPara">পাড়ার নাম নির্বাচন করুন:</label>
+                        <select id="bPara" required>
+                            <option value="">পাড়া সিলেক্ট করুন</option>
+                            <option value="হুসেনপুর">হুসেনপুর</option>
+                            <option value="ওজাইখালি">ওজাইখালি</option>
+                            <option value="টান গুসাইপুর">টান গুসাইপুর</option>
+                            <option value="বানাওল">বানাওল</option>
+                            <option value="চিতানপুর">চিতানপুর</option>
+                            <option value="কৌতূপি">কৌতূপি</option>
+                            <option value="অন্যান্য">অন্যান্য</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bHouse">বাড়ির নাম:</label>
+                        <input type="text" id="bHouse" placeholder="যেমন: ভূঁইয়া বাড়ি" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bPackage">প্যাকেজ নির্বাচন করুন:</label>
+                        <select id="bPackage" required>
+                            <option value="">প্যাকেজ সিলেক্ট করুন</option>
+                            <option value="20 Mbps (৫০০ টাকা)">২০ Mbps - ৫০০ টাকা/মাস</option>
+                            <option value="30 Mbps (৬০০ টাকা)">৩০ Mbps - ৬০০ টাকা/মাস</option>
+                            <option value="80 Mbps (৮০০ টাকা)">৮০ Mbps - ৮০০ টাকা/মাস</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">💬 WhatsApp-এ বুকিং পাঠান</button>
+                </form>
+            </div>
 
-            perTbody.innerHTML += `
-                <tr>
-                    <td>Day ${day}</td>
-                    <td><input type="text" id="per_desc_${i}" placeholder="আয়ের খাত"></td>
-                    <td><input type="number" id="per_inc_${i}" class="per-inc" oninput="calculatePer()" placeholder="0"></td>
-                    <td><input type="text" id="per_expdesc_${i}" placeholder="খরচের খাত"></td>
-                    <td><input type="number" id="per_exp_${i}" class="per-exp" oninput="calculatePer()" placeholder="0"></td>
-                    <td class="per-day-bal">৳ 0</td>
-                </tr>
-            `;
+            <!-- Complaint Form -->
+            <div class="form-box complaint-box" id="complaint">
+                <h2 style="color: #ff416c; margin-bottom: 15px; font-size: 1.7rem;">⚠️ লাইন সমস্যা বা অভিযোগ ফর্ম</h2>
+                <p style="color: #64748b; margin-bottom: 20px; font-size: 1rem;">নেটওয়ার্ক বা লাইন সমস্যা হলে দ্রুত সিলেক্ট করে অভিযোগ পাঠান।</p>
+                
+                <form class="custom-form" id="whatsappComplaintForm">
+                    <div class="form-group">
+                        <label for="cName">গ্রাহকের নাম:</label>
+                        <input type="text" id="cName" placeholder="আপনার নাম লিখুন" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cFatherName">পিতার নাম:</label>
+                        <input type="text" id="cFatherName" placeholder="পিতার নাম লিখুন" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cPhone">মোবাইল নম্বর:</label>
+                        <input type="tel" id="cPhone" placeholder="মোবাইল নম্বর দিন" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cLineName">লাইন বা ওয়াইফাইয়ের নাম (User/ID):</label>
+                        <input type="text" id="cLineName" placeholder="রাউটার বা ইউজার নাম" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cPara">পাড়ার নাম নির্বাচন করুন:</label>
+                        <select id="cPara" required>
+                            <option value="">পাড়া সিলেক্ট করুন</option>
+                            <option value="হুসেনপুর">হুসেনপুর</option>
+                            <option value="ওজাইখালি">ওজাইখালি</option>
+                            <option value="টান গুসাইপুর">টান গুসাইপুর</option>
+                            <option value="বানাওল">বানাওল</option>
+                            <option value="চিতানপুর">চিতানপুর</option>
+                            <option value="কৌতূপি">কৌতূপি</option>
+                            <option value="অন্যান্য">অন্যান্য</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cHouse">বাড়ির নাম:</label>
+                        <input type="text" id="cHouse" placeholder="যেমন: চৌধুরী বাড়ি" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="commonIssue">সাধারণ সমস্যা সিলেক্ট করুন:</label>
+                        <select id="commonIssue" required>
+                            <option value="">সমস্যা সিলেক্ট করুন</option>
+                            <option value="লাইন সম্পূর্ণ বিচ্ছিন্ন (Net Nai)">🔴 লাইন সম্পূর্ণ বিচ্ছিন্ন (নেট নাই)</option>
+                            <option value="ইন্টারনেট খুব স্লো (Slow Speed)">🟡 ইন্টারনেট খুব স্লো হচ্ছে</option>
+                            <option value="ওয়াইফাই কানেক্ট হয় না (WiFi Issue)">🟠 ওয়াইফাই কানেক্ট হচ্ছে না / পাসওয়ার্ড সমস্যা</option>
+                            <option value="তার ছিঁড়ে গেছে (Cable Cut)">✂️ ফাইবার বা ড্রপ ক্যাবল ছিঁড়ে গেছে</option>
+                            <option value="রাউটার বা পাওয়ার প্রবলেম (Power Issue)">🔌 রাউটারে লাইন বা পাওয়ার আসছে না</option>
+                            <option value="অন্যান্য সমস্যা">⚪ অন্যান্য সমস্যা</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn complaint-btn">⚠️ WhatsApp-এ অভিযোগ পাঠান</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-box" id="contact">
+            <h2>সরাসরি কথা বলুন প্রোপ্রাইটরের সাথে</h2>
+            <p>আপনার বাসা, দোকান বা অফিসে হাই-স্পিড ইন্টারনেট সংযোগ নিতে সরাসরি কল করুন বা আমাদের ফেসবুক পেজে মেসেজ পাঠান।</p>
+            <p>📍 <strong>ঠিকানা:</strong> হুমাইপুর</p>
+            <p>👤 <strong>পরিচালক ও প্রতিষ্ঠাতা:</strong> তাজিম খান</p>
+            <a href="tel:+8801953421738" class="phone-link">📞 +8801953421738</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; ২০২৬ ভাই ভাই ওয়াইফাই ডিজিটাল নেটওয়ার্ক। সর্বস্বত্ব সংরক্ষিত।</p>
+        <p>Website Developed by: <span>Engr. Neyamul Haque</span></p>
+    </footer>
+
+    <!-- JavaScript for Auto Slider & WhatsApp Integration -->
+    <script>
+        // Auto Slider Script
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].classList.add("active");
+            setTimeout(showSlides, 3500); // Change image every 3.5 seconds
         }
-        loadSavedData();
-    }
+        showSlides();
 
-    function calculateBiz() {
-        let totalInc = 0, totalExp = 0;
-        const incInputs = document.querySelectorAll('.biz-inc');
-        const expInputs = document.querySelectorAll('.biz-exp');
-        const dayBals = document.querySelectorAll('.biz-day-bal');
+        // WhatsApp Integration
+        const ownerWhatsAppNumber = "8801953421738";
 
-        incInputs.forEach((inc, index) => {
-            let incVal = parseFloat(inc.value) || 0;
-            let expVal = parseFloat(expInputs[index].value) || 0;
-            let dayBal = incVal - expVal;
-            totalInc += incVal;
-            totalExp += expVal;
-            dayBals[index].innerText = '৳ ' + dayBal;
+        // Booking Form Submission
+        document.getElementById('whatsappBookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('bName').value;
+            const father = document.getElementById('bFatherName').value;
+            const phone = document.getElementById('bPhone').value;
+            const para = document.getElementById('bPara').value;
+            const house = document.getElementById('bHouse').value;
+            const pkg = document.getElementById('bPackage').value;
+
+            const message = `🔔 *ভাই ভাই ওয়াইফাই ডিজিটাল নেটওয়ার্ক: নতুন সংযোগ বুকিং*%0A%0A*নাম:* ${name}%0A*পিতার নাম:* ${father}%0A*মোবাইল:* ${phone}%0A*পাড়া:* ${para}%0A*বাড়ির নাম:* ${house}%0A*প্যাকেজ:* ${pkg}`;
+            
+            window.open(`https://wa.me/${ownerWhatsAppNumber}?text=${message}`, '_blank');
         });
 
-        let netProfit = totalInc - totalExp;
-        document.getElementById('biz-total-inc').innerText = '৳ ' + totalInc;
-        document.getElementById('biz-total-exp').innerText = '৳ ' + totalExp;
-        document.getElementById('biz-net-total').innerText = '৳ ' + netProfit;
-        document.getElementById('biz-profit-display').innerText = '৳ ' + netProfit;
-    }
+        // Complaint Form Submission
+        document.getElementById('whatsappComplaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('cName').value;
+            const father = document.getElementById('cFatherName').value;
+            const phone = document.getElementById('cPhone').value;
+            const lineName = document.getElementById('cLineName').value;
+            const para = document.getElementById('cPara').value;
+            const house = document.getElementById('cHouse').value;
+            const issue = document.getElementById('commonIssue').value;
 
-    function calculatePer() {
-        let totalInc = 0, totalExp = 0;
-        const incInputs = document.querySelectorAll('.per-inc');
-        const expInputs = document.querySelectorAll('.per-exp');
-        const dayBals = document.querySelectorAll('.per-day-bal');
-
-        incInputs.forEach((inc, index) => {
-            let incVal = parseFloat(inc.value) || 0;
-            let expVal = parseFloat(expInputs[index].value) || 0;
-            let dayBal = incVal - expVal;
-            totalInc += incVal;
-            totalExp += expVal;
-            dayBals[index].innerText = '৳ ' + dayBal;
+            const message = `⚠️ *ভাই ভাই ওয়াইফাই ডিজিটাল নেটওয়ার্ক: জরুরি অভিযোগ*%0A%0A*গ্রাহকের নাম:* ${name}%0A*পিতার নাম:* ${father}%0A*মোবাইল:* ${phone}%0A*লাইন/ইউজার নাম:* ${lineName}%0A*পাড়া:* ${para}%0A*বাড়ির নাম:* ${house}%0A*সমস্যা:* ${issue}`;
+            
+            window.open(`https://wa.me/${ownerWhatsAppNumber}?text=${message}`, '_blank');
         });
-
-        let netSavings = totalInc - totalExp;
-        document.getElementById('per-total-inc').innerText = '৳ ' + totalInc;
-        document.getElementById('per-total-exp').innerText = '৳ ' + totalExp;
-        document.getElementById('per-net-total').innerText = '৳ ' + netSavings;
-        document.getElementById('per-balance-display').innerText = '৳ ' + netSavings;
-    }
-
-    function saveData() {
-        let month = document.getElementById('selected-month').value;
-        let inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            localStorage.setItem(month + '_' + input.id, input.value);
-        });
-        alert(month + ' মাসের হিসাব সফলভাবে সেভ হয়েছে!');
-    }
-
-    function loadSavedData() {
-        let month = document.getElementById('selected-month').value;
-        let inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            let savedVal = localStorage.getItem(month + '_' + input.id);
-            input.value = savedVal ? savedVal : '';
-        });
-        calculateBiz();
-        calculatePer();
-    }
-
-    function downloadPDF() {
-        let month = document.getElementById('selected-month').value;
-        document.title = "EXPO_Hotspot_Report_" + month;
-        window.print();
-    }
-
-    function clearData() {
-        let month = document.getElementById('selected-month').value;
-        if (confirm("আপনি কি " + month + " মাসের সব তথ্য মুছে ফেলতে চান?")) {
-            let inputs = document.querySelectorAll('input');
-            inputs.forEach(input => {
-                localStorage.removeItem(month + '_' + input.id);
-            });
-            loadSavedData();
-        }
-    }
-
-    window.onload = generateRows;
-</script>
+    </script>
 
 </body>
 </html>
